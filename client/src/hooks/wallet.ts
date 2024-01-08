@@ -32,7 +32,6 @@ export function useAppWallet(connection: anchor.web3.Connection, publicKey: Publ
                 await connection.confirmTransaction(signAirdrop)
             } catch (err: any) {
                 alert(err)
-                // console.log(err)
             } finally {
                 setRequesting(false)
             }

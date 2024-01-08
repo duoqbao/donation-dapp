@@ -7,8 +7,8 @@ export type PropsCreator = {
 };
 export default function CreatorNode(props: PropsCreator) {
   return (
-    <div className="flex flex-col justify-center items-center mx-5 cursor-pointer ">
-      <div className=" bg-lightgreen p-3 rounded-full relative mb-3 border-gray border-2 hover:border-lightgreen transition-all ease-in-out">
+    <div className="flex flex-col justify-center items-center mx-5 cursor-pointer my-2 ">
+      <div className="bg-lightgreen p-3 rounded-full relative mb-3 border-gray border-2 hover:border-lightgreen transition-all ease-in-out">
         <img
           className="select-none"
           src={diceBearURL(`${props.name}${props.ranked}`)}
