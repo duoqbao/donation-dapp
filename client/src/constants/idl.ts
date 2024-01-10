@@ -1,6 +1,6 @@
 export const IDL = {
   version: "0.1.0",
-  name: "Donation_app",
+  name: "hello_anchor",
   constants: [
     {
       name: "CREATOR_TAG",
@@ -11,11 +11,16 @@ export const IDL = {
       name: "DONATION_TAG",
       type: "bytes",
       value: "[68, 79, 78, 65, 84, 73, 79, 78, 95, 83, 84, 65, 84, 69]"
+    },
+    {
+      name: "CREATOR_DELETE",
+      type: "bytes",
+      value: "[67, 82, 69, 65, 84, 79, 82, 95, 82, 69, 77, 79, 86, 69]"
     }
   ],
   instructions: [
     {
-      name: "initilizeCreator",
+      name: "initializeCreator",
       accounts: [
         {
           name: "authority",
@@ -92,6 +97,27 @@ export const IDL = {
           type: "u64"
         }
       ]
+    },
+    {
+      name: "removeCreator",
+      accounts: [
+        {
+          name: "authority",
+          isMut: true,
+          isSigner: true
+        },
+        {
+          name: "creatorAccount",
+          isMut: true,
+          isSigner: false
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false
+        }
+      ],
+      args: []
     }
   ],
   accounts: [
@@ -115,6 +141,10 @@ export const IDL = {
           {
             name: "wallet",
             type: "publicKey"
+          },
+          {
+            name: "donated",
+            type: "u64"
           }
         ]
       }
@@ -139,6 +169,10 @@ export const IDL = {
           {
             name: "fee",
             type: "u64"
+          },
+          {
+            name: "to",
+            type: "publicKey"
           }
         ]
       }

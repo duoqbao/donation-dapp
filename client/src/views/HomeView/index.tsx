@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "components";
 import NotificationsLine from "components/NotificationsLine";
 import CreatorRanking from "components/CreatorRanking";
 import Activity from "components/Activity";
 import Donation, { PropsDonation } from "components/Donation";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useDonate } from "hooks/useDonate";
 export function HomeView() {
+  const { connection } = useConnection();
+  const { publicKey } = useWallet();
+  const { creators } = useDonate(connection, publicKey);
+
   return (
     <div>
-      <Header />
+      <Header connection={connection} publicKey={publicKey} />
       <div className="my-5 max-w-[98vw] ">
         <NotificationsLine notifications={_notifications} />
       </div>
-      <CreatorRanking creators={_creatorRanking} />
+      <CreatorRanking creators={creators} />
       <div className="w-full p-5">
         <Activity>
           {donations.map((item: PropsDonation, index: number) => (
@@ -28,38 +34,7 @@ const _notifications = [
   "Để Thành Công chỉ sau 1 đêm như Thầy Giáo Ba. Tinikun tiết lộ bí mật ngay sinh nhật SBTC BA RỌI BÉO.",
 ];
 
-const _creatorRanking = [
-  {
-    name: "Ba Roi Beo",
-    donated: 100,
-  },
-  {
-    name: "Ba Roi Beo",
-    donated: 100,
-  },
-  {
-    name: "Ba Roi Beo",
-    donated: 100,
-  },
-  {
-    name: "Ba Roi Beo",
-    donated: 100,
-  },
-  {
-    name: "Ba Roi Beo",
-    donated: 100,
-  },
-  {
-    name: "Ba Roi Beo",
-    donated: 100,
-  },
-  {
-    name: "Ba Roi Beo",
-    donated: 100,
-  },
-];
-
-const donations = [
+export const donations = [
   {
     name: "Someone",
     amount: "1.00",

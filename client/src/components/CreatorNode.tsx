@@ -4,10 +4,16 @@ export type PropsCreator = {
   name?: string;
   donated?: number;
   ranked?: number;
+  wallet?: string;
+  onClick?: () => void | Function;
 };
 export default function CreatorNode(props: PropsCreator) {
   return (
-    <div className="flex flex-col justify-center items-center mx-5 cursor-pointer my-2 ">
+    <div
+      className="flex flex-col justify-center items-center mx-5 cursor-pointer my-2 "
+      onClick={props.onClick}
+    >
+      <p>{props.donated?.toString()} Sol</p>
       <div className="bg-lightgreen p-3 rounded-full relative mb-3 border-gray border-2 hover:border-lightgreen transition-all ease-in-out">
         <img
           className="select-none"
@@ -19,7 +25,7 @@ export default function CreatorNode(props: PropsCreator) {
           {props.ranked}
         </p>
       </div>
-      <p className="text-black font-bold text-sm">{props.name}</p>
+      <p className="text-black font-bold text-sm">{props.name} &bull;</p>
     </div>
   );
 }
